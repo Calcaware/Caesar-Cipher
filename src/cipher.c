@@ -25,8 +25,9 @@ int main (int argc, char* args[]) {
 	fseek(sf,0,SEEK_END);
 	long fs=ftell(sf);
 	rewind(sf);
-	char *s=malloc(fs*(sizeof(char)));
+	char *s=malloc((fs+1)*(sizeof(char)));
 	fread(s,sizeof(char),fs,sf);
+	s[fs] = '\0';
 	fclose(sf);
 	if (strcmp(args[1],"-c")!=0){cipher(s);}
 	else if (strcmp(args[1],"-d")!=0){decipher(s);}
